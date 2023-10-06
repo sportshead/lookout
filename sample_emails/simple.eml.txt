@@ -1,0 +1,13 @@
+Jimbo Wales added a comment.
+
+
+  We need to get this done now!
+
+TASK DETAIL
+  https://phabricator.wikimedia.org/T1234
+
+EMAIL PREFERENCES
+  https://phabricator.wikimedia.org/settings/panel/emailpreferences/
+
+To: Editor1
+Cc: Editor1, Editor5, Editor100

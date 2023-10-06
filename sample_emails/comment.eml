@@ -1,0 +1,155 @@
+Delivered-To: sportzpikachu@gmail.com
+Received: by 2002:a05:7108:d019:b0:339:e21:4d3d with SMTP id ct25csp477199gdc;
+        Thu, 5 Oct 2023 11:08:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG9bflbQpx8Qjy6q1DQFi1e6V3Rf4O4VesotPyUjl+SMOqveELqAjvGI8PAXmRXq5DiZ4tM
+X-Received: by 2002:ac8:61ca:0:b0:410:8ac5:3084 with SMTP id kr10-20020ac861ca000000b004108ac53084mr4030254qtb.7.1696529299679;
+        Thu, 05 Oct 2023 11:08:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1696529299; cv=none;
+        d=google.com; s=arc-20160816;
+        b=WH2A/K/qcouNJ3OoVJNz05nh+NLyL3KMOBXl6weqaq4rVhLr7o304GbTjZELjRhDYt
+         xwAh/1PZ4FzNaUWtgPKSUXyOzEjMUNMLI3E3Q9fEL/vmQsDeGWTlPPVvAlykPCzgHrwc
+         LXId7oMbTJjAIS1BfhhKNCaSR/eMRSx+XS084Gj43DF0P9eO+Ge/nMMmVB/P11LUp7Bq
+         Nt1/bAl7CNwEaQc6IxMKoDMClQ+UK0lDwpOM5siaCfPpzeEbmJERQaM5WEhEDs3zHARY
+         /8/dTvTuCk7HUoE3C08QOTuIP1L4DIqi+AwofWcLZQwwBxkCTHWdNmGAuXKedv9+zdLb
+         OwPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=message-id:mime-version:thread-index:references:in-reply-to
+         :thread-topic:precedence:subject:reply-to:cc:from:to:date
+         :dkim-signature;
+        bh=c4JrHaSJ6Ero912ZjmqP6F/3UyxFKFbLARHLBXPHoCI=;
+        fh=3TAQdyycNJbHeqrLBLHo2MWMk7+IbpS4DCz20++yTmw=;
+        b=Awe9zVIYbbFT29NnR/6vGaqvChVtYYQM7byrS1ZQTWZyLuWGqnqbVmRjz3oGRJiDPH
+         cVW2+NM4Xxp3klEnmixaRFL7uqygNfSK7fwmBmHvVWVcP14B4gQ8EJZ+U8wwP412e9kB
+         ft3EySaBmgMy9zfmwCj064YvHwiivxP0uUYt0OLBj7m00YMydQ4En4q/dpg4/uJNamyF
+         hNeA/APYiYGyMzqHxtLSrI5/JpDjm2l6ZGz6dlJOQMpCDqXVoYSXKGGn/aKlJ+t4W0rD
+         /3ZSifAouAvSOfJzwmkrxLvg/BJc0OdOIewL2gPtWOMpWzhOupl7Po+CHtz3L/2F3onZ
+         H8dQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@wikimedia.org header.s=wikimedia header.b="IbP6fS2/";
+       spf=pass (google.com: domain of no-reply@phabricator.wikimedia.org designates 208.80.154.76 as permitted sender) smtp.mailfrom=no-reply@phabricator.wikimedia.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=wikimedia.org
+Return-Path: <no-reply@phabricator.wikimedia.org>
+Received: from mx1001.wikimedia.org (mx1001.wikimedia.org. [208.80.154.76])
+        by mx.google.com with ESMTPS id v27-20020a05622a189b00b00419997580a3si1231022qtc.710.2023.10.05.11.08.19
+        for <sportzpikachu@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Oct 2023 11:08:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of no-reply@phabricator.wikimedia.org designates 208.80.154.76 as permitted sender) client-ip=208.80.154.76;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@wikimedia.org header.s=wikimedia header.b="IbP6fS2/";
+       spf=pass (google.com: domain of no-reply@phabricator.wikimedia.org designates 208.80.154.76 as permitted sender) smtp.mailfrom=no-reply@phabricator.wikimedia.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=wikimedia.org
+Received: from phab1004.eqiad.wmnet ([2620:0:861:102:10:64:16:101]:52463)
+	by mx1001.wikimedia.org with esmtp (Exim 4.94.2)
+	(envelope-from <no-reply@phabricator.wikimedia.org>)
+	id 1qoSln-007VyJ-5w
+	for sportzpikachu@gmail.com; Thu, 05 Oct 2023 18:08:19 +0000
+Received: from localhost ([::1]:31691 helo=localhost.localdomain)
+	by phab1004.eqiad.wmnet with esmtp (Exim 4.92)
+	(envelope-from <no-reply@phabricator.wikimedia.org>)
+	id 1qoSln-0006z3-3h; Thu, 05 Oct 2023 18:08:19 +0000
+Date: Thu, 5 Oct 2023 18:08:19 +0000
+To: Phabricator <no-reply@phabricator.wikimedia.org>
+From: Chlod <no-reply@phabricator.wikimedia.org>
+Cc: sportzpikachu@gmail.com
+Reply-to: Chlod <T348212+public+1078edc2b411a4c5@phabricator.wikimedia.org>
+Subject: [Maniphest] [Commented On] T348212: Allow copying revert reason after revert failed
+X-Priority: 3
+X-Mailer: PHPMailer 5.1 (phpmailer.sourceforge.net)
+X-Phabricator-Sent-This-Message: Yes
+X-Mail-Transport-Agent: MetaMTA
+X-Auto-Response-Suppress: All
+X-Phabricator-Mail-Tags: <maniphest-cc>, <maniphest-comment>
+X-Herald-Rules: <9>, <293>, <362>
+X-Phabricator-Projects: <#ultraviolet>
+X-Phabricator-To: <PHID-USER-torvqnxuu2l3rpihzye4>
+X-Phabricator-Cc: <PHID-USER-torvqnxuu2l3rpihzye4>
+X-Phabricator-Cc: <PHID-USER-hgn5uw2jafgjgfvxibhh>
+X-Phabricator-Cc: <PHID-USER-d53r47fh2j42t4xnh22u>
+X-Phabricator-Cc: <PHID-USER-cqwohvlzsiw5v6lyxmpg>
+X-Phabricator-Cc: <PHID-USER-4vrxfn3idlr7buayrqmp>
+X-Phabricator-Cc: <PHID-USER-55q7yg56yplaupbee7e6>
+X-Phabricator-Cc: <PHID-USER-un6pllcofxstlxkampuh>
+Precedence: bulk
+Thread-Topic: PHID-TASK-l7mhyhysnx7jc6ybjqqq
+X-Phabricator-Mail-ID: 77202669
+X-Phabricator-Send-Attempt: vddu7vfl3vrjsv7o
+In-Reply-To: <maniphest-task-PHID-TASK-l7mhyhysnx7jc6ybjqqq@phabricator.wikimedia.org>
+References: <maniphest-task-PHID-TASK-l7mhyhysnx7jc6ybjqqq@phabricator.wikimedia.org>
+Thread-Index: MGFhZDc5M2Q2MDA0YmI1NzI2OWVlODBhOTIyIGUe+5M=
+X-Phabricator-Stamps: actor(@Chlod) application(Maniphest) author(@Sportzpikachu) herald(H9) herald(H293) herald(H362) monogram(T348212) object-type(TASK) phid(PHID-TASK-l7mhyhysnx7jc6ybjqqq) space(S1) subscriber(@Aklapper) subscriber(@Chlod) subscriber(@Sportzpikachu) subscriber(@Yoshi24517) subtype(feature) tag(#ultraviolet) task-priority(25) task-status(open) task-unassigned() via(web)
+MIME-Version: 1.0
+Content-Type: multipart/alternative;
+	boundary="b1_21e788e1cabdf6402b98946778bc6cd5"
+Message-Id: <E1qoSln-0006z3-3h@phab1004.eqiad.wmnet>
+
+
+--b1_21e788e1cabdf6402b98946778bc6cd5
+Content-Type: text/plain; charset = "utf-8"
+Content-Transfer-Encoding: base64
+
+Q2hsb2QgYWRkZWQgYSBjb21tZW50LgoKCiAgSG1tLCBwZXJoYXBzIGFsbG93aW5nIGNvcHlpbmcg
+aXNuJ3QgdGhlIHNvbHV0aW9uIGhlcmUsIGFzIGl0IGludm9sdmVzIGFub3RoZXIgYnV0dG9uIHBy
+ZXNzLiBUd28gdGhpbmdzIEkgc2VlIHRoYXQgd2UgY291bGQgZG8gaGVyZToKICAKICAtIFVwb24g
+ZmluZGluZyBhIG5ldyBkaWZmLCBzdG9yZSB0aGUgc2F2ZWQgZWRpdCBzdW1tYXJ5LCB0aGVuIHJl
+ZGlyZWN0IHRvIHRoZSBuZXcgZGlmZi4gVXBvbiBwcmVzc2luZyB0aGUgcm9sbGJhY2sgYnV0dG9u
+IGFnYWluLCBwcmUtZmlsbCB0aGUgdGV4dCBpbnB1dCBib3ggd2l0aCB0aGUgdHlwZWQtb3V0IHJl
+YXNvbi4KICAgIC0gVGhpcyBvbmx5IGV2ZXIgcmVxdWlyZXMgbG9jYWwgc3RvcmFnZSAob3IgcGVy
+aGFwcyBJbmRleGVkREIpLCBzbyBub3Qgc28gZXhwZW5zaXZlLgogIC0gV2UgY291bGQgYWxzbyBq
+dXN0IHN0ZWFtcm9sbCByZXZlcnQgdGhlIHRhcmdldCB1c2VyJ3MgZWRpdHMsIGJ1dCB0aGlzIGNv
+dWxkIGNhdXNlIHNvbWUgY29sbGF0ZXJhbCBkYW1hZ2UuCiAgICAtIFRoaXMgc2hvdWxkIG9ubHkg
+ZXZlciBiZSBjb25zaWRlcmVkIGlmICJyb2xsYmFjayIgd2FzIHNlbGVjdGVkIGluc3RlYWQgb2Yg
+InJvbGxiYWNrLWxpa2UiIGluIHRoZSBvcHRpb25zLgogICAgLSBUaGlzIGFwcGxpZXMgdGhlIHJl
+dmVydCBpbW1lZGlhdGVseSwgdW5saWtlIHRoZSBmaXJzdCBvcHRpb24gd2hpY2ggcmVxdWlyZXMg
+YW5vdGhlciBwYWdlIGxvYWQuCgpUQVNLIERFVEFJTAogIGh0dHBzOi8vcGhhYnJpY2F0b3Iud2lr
+aW1lZGlhLm9yZy9UMzQ4MjEyCgpFTUFJTCBQUkVGRVJFTkNFUwogIGh0dHBzOi8vcGhhYnJpY2F0
+b3Iud2lraW1lZGlhLm9yZy9zZXR0aW5ncy9wYW5lbC9lbWFpbHByZWZlcmVuY2VzLwoKVG86IENo
+bG9kCkNjOiBDaGxvZCwgQWtsYXBwZXIsIFlvc2hpMjQ1MTcsIFNwb3J0enBpa2FjaHUsIEFzYXJ0
+ZWEsIElzb2Nocm9uZSwgUmVtYWdveGVyCg==
+
+
+--b1_21e788e1cabdf6402b98946778bc6cd5
+Content-Type: text/html; charset = "utf-8"
+Content-Transfer-Encoding: base64
+
+PHRhYmxlPjx0cj48dGQgc3R5bGU9IiI+Q2hsb2QgYWRkZWQgYSBjb21tZW50Lgo8L3RkPjxhIHN0
+eWxlPSJ0ZXh0LWRlY29yYXRpb246IG5vbmU7IHBhZGRpbmc6IDRweCA4cHg7IG1hcmdpbjogMCA4
+cHggOHB4OyBmbG9hdDogcmlnaHQ7IGNvbG9yOiAjNDY0QzVDOyBmb250LXdlaWdodDogYm9sZDsg
+Ym9yZGVyLXJhZGl1czogM3B4OyBiYWNrZ3JvdW5kLWNvbG9yOiAjRjdGN0Y5OyBiYWNrZ3JvdW5k
+LWltYWdlOiBsaW5lYXItZ3JhZGllbnQodG8gYm90dG9tLCNmZmYsI2YxZjBmMSk7IGRpc3BsYXk6
+IGlubGluZS1ibG9jazsgYm9yZGVyOiAxcHggc29saWQgcmdiYSg3MSw4NywxMjAsLjIpOyIgaHJl
+Zj0iaHR0cHM6Ly9waGFicmljYXRvci53aWtpbWVkaWEub3JnL1QzNDgyMTIiPlZpZXcgVGFzazwv
+YT48L3RyPjwvdGFibGU+PGJyIC8+PGRpdj48ZGl2PjxwPkhtbSwgcGVyaGFwcyBhbGxvd2luZyBj
+b3B5aW5nIGlzbiYjMDM5O3QgdGhlIHNvbHV0aW9uIGhlcmUsIGFzIGl0IGludm9sdmVzIGFub3Ro
+ZXIgYnV0dG9uIHByZXNzLiBUd28gdGhpbmdzIEkgc2VlIHRoYXQgd2UgY291bGQgZG8gaGVyZTo8
+L3A+Cgo8dWwgY2xhc3M9InJlbWFya3VwLWxpc3QiPgo8bGkgY2xhc3M9InJlbWFya3VwLWxpc3Qt
+aXRlbSI+VXBvbiBmaW5kaW5nIGEgbmV3IGRpZmYsIHN0b3JlIHRoZSBzYXZlZCBlZGl0IHN1bW1h
+cnksIHRoZW4gcmVkaXJlY3QgdG8gdGhlIG5ldyBkaWZmLiBVcG9uIHByZXNzaW5nIHRoZSByb2xs
+YmFjayBidXR0b24gYWdhaW4sIHByZS1maWxsIHRoZSB0ZXh0IGlucHV0IGJveCB3aXRoIHRoZSB0
+eXBlZC1vdXQgcmVhc29uLjx1bCBjbGFzcz0icmVtYXJrdXAtbGlzdCI+CjxsaSBjbGFzcz0icmVt
+YXJrdXAtbGlzdC1pdGVtIj5UaGlzIG9ubHkgZXZlciByZXF1aXJlcyBsb2NhbCBzdG9yYWdlIChv
+ciBwZXJoYXBzIEluZGV4ZWREQiksIHNvIG5vdCBzbyBleHBlbnNpdmUuPC9saT4KPC91bD48L2xp
+Pgo8bGkgY2xhc3M9InJlbWFya3VwLWxpc3QtaXRlbSI+V2UgY291bGQgYWxzbyBqdXN0IHN0ZWFt
+cm9sbCByZXZlcnQgdGhlIHRhcmdldCB1c2VyJiMwMzk7cyBlZGl0cywgYnV0IHRoaXMgY291bGQg
+Y2F1c2Ugc29tZSBjb2xsYXRlcmFsIGRhbWFnZS48dWwgY2xhc3M9InJlbWFya3VwLWxpc3QiPgo8
+bGkgY2xhc3M9InJlbWFya3VwLWxpc3QtaXRlbSI+VGhpcyBzaG91bGQgb25seSBldmVyIGJlIGNv
+bnNpZGVyZWQgaWYgJnF1b3Q7cm9sbGJhY2smcXVvdDsgd2FzIHNlbGVjdGVkIGluc3RlYWQgb2Yg
+JnF1b3Q7cm9sbGJhY2stbGlrZSZxdW90OyBpbiB0aGUgb3B0aW9ucy48L2xpPgo8bGkgY2xhc3M9
+InJlbWFya3VwLWxpc3QtaXRlbSI+VGhpcyBhcHBsaWVzIHRoZSByZXZlcnQgaW1tZWRpYXRlbHks
+IHVubGlrZSB0aGUgZmlyc3Qgb3B0aW9uIHdoaWNoIHJlcXVpcmVzIGFub3RoZXIgcGFnZSBsb2Fk
+LjwvbGk+CjwvdWw+PC9saT4KPC91bD48L2Rpdj48L2Rpdj48YnIgLz48ZGl2PjxzdHJvbmc+VEFT
+SyBERVRBSUw8L3N0cm9uZz48ZGl2PjxhIGhyZWY9Imh0dHBzOi8vcGhhYnJpY2F0b3Iud2lraW1l
+ZGlhLm9yZy9UMzQ4MjEyIj5odHRwczovL3BoYWJyaWNhdG9yLndpa2ltZWRpYS5vcmcvVDM0ODIx
+MjwvYT48L2Rpdj48L2Rpdj48YnIgLz48ZGl2PjxzdHJvbmc+RU1BSUwgUFJFRkVSRU5DRVM8L3N0
+cm9uZz48ZGl2PjxhIGhyZWY9Imh0dHBzOi8vcGhhYnJpY2F0b3Iud2lraW1lZGlhLm9yZy9zZXR0
+aW5ncy9wYW5lbC9lbWFpbHByZWZlcmVuY2VzLyI+aHR0cHM6Ly9waGFicmljYXRvci53aWtpbWVk
+aWEub3JnL3NldHRpbmdzL3BhbmVsL2VtYWlscHJlZmVyZW5jZXMvPC9hPjwvZGl2PjwvZGl2Pjxi
+ciAvPjxkaXY+PHN0cm9uZz5UbzogPC9zdHJvbmc+Q2hsb2Q8YnIgLz48c3Ryb25nPkNjOiA8L3N0
+cm9uZz5DaGxvZCwgQWtsYXBwZXIsIFlvc2hpMjQ1MTcsIFNwb3J0enBpa2FjaHUsIEFzYXJ0ZWEs
+IElzb2Nocm9uZSwgUmVtYWdveGVyPGJyIC8+PC9kaXY+
+
+
+
+--b1_21e788e1cabdf6402b98946778bc6cd5--
+
+

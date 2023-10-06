@@ -1,0 +1,19 @@
+Chlod added a comment.
+
+
+  Hmm, perhaps allowing copying isn't the solution here, as it involves another button press. Two things I see that we could do here:
+  
+  - Upon finding a new diff, store the saved edit summary, then redirect to the new diff. Upon pressing the rollback button again, pre-fill the text input box with the typed-out reason.
+    - This only ever requires local storage (or perhaps IndexedDB), so not so expensive.
+  - We could also just steamroll revert the target user's edits, but this could cause some collateral damage.
+    - This should only ever be considered if "rollback" was selected instead of "rollback-like" in the options.
+    - This applies the revert immediately, unlike the first option which requires another page load.
+
+TASK DETAIL
+  https://phabricator.wikimedia.org/T348212
+
+EMAIL PREFERENCES
+  https://phabricator.wikimedia.org/settings/panel/emailpreferences/
+
+To: Chlod
+Cc: Chlod, Aklapper, Yoshi24517, Sportzpikachu, Asartea, Isochrone, Remagoxer
