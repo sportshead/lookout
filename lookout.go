@@ -11,7 +11,7 @@ import (
 )
 
 // https://stackoverflow.com/a/57006724
-const ISO8601 = "2006-01-02T15:04:05.999Z"
+const ISO8601 = "2006-01-02T15:04:05.000Z"
 
 var webhookUrl string
 var stampFilters []string
