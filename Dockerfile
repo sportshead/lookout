@@ -4,4 +4,4 @@ WORKDIR /app
 
 COPY lookout .
 
-CMD ["./lookout"]
+ENTRYPOINT ["/app/lookout"]
