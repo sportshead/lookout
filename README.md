@@ -1,8 +1,8 @@
 # lookout
 Watches for Phabricator emails regarding certain tags and forwards them to a Discord webhook.
 
-## config
-All config is in environment variables.
+## usage
+All config is in environment variables. Make sure to bind mount the directory which new mail will appear in to `/mail` on the container.
 
 | Key               | Description                                                                                                                                                                                                                                                                                                    | Type        |
 |-------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
