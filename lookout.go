@@ -17,6 +17,8 @@ var webhookUrl string
 var stampFilters []string
 
 func main() {
+	slog.SetDefault(slog.New(slog.NewTextHandler(os.Stderr, nil)))
+
 	webhookUrl = os.Getenv("LOOKOUT_WEBHOOK")
 	if webhookUrl == "" {
 		slog.Error("invalid config option", slogTag("invalid_config"), slog.String("option", "LOOKOUT_WEBHOOK"))
@@ -60,7 +62,7 @@ func watchLoop(w *fsnotify.Watcher) {
 				os.Exit(1)
 			}
 			logger := slog.With(slog.String("name", e.Name))
-			logger.Debug("watcher got new event", slogTag("watcher_event"), slog.String("op", e.Op.String()))
+			logger.Info("watcher got new event", slogTag("watcher_event"), slog.String("op", e.Op.String()))
 			if e.Op.Has(fsnotify.Create) {
 				go handleCreate(e, logger)
 			}
