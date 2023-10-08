@@ -1,0 +1,47 @@
+image: golang:1.21
+
+stages:
+  - build
+  - test
+  - deploy
+
+build:go:
+  stage: build
+  script:
+    - go build -o lookout .
+  artifacts:
+    paths:
+      - lookout
+
+test:
+  stage: test
+  before_script:
+    - go mod download
+  script:
+    - go vet
+    - go test -v .
+
+deploy:prod:
+  image: docker
+  stage: deploy
+  environment: production
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - chmod 400 "$SSH_PRIVATE_KEY"
+    - ssh-add "$SSH_PRIVATE_KEY"
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - cp "$SSH_KNOWN_HOSTS" ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - cp "$SSH_CONFIG" ~/.ssh/config
+    - chmod 644 ~/.ssh/config
+  script:
+    - "docker build -t lookout:$CI_COMMIT_SHORT_SHA ."
+    - "docker save lookout:$CI_COMMIT_SHORT_SHA | bzip2 > lookout.docker.bzip2"
+    - "cat lookout.docker.bzip2 | ssh deploy_target 'bunzip2 | docker load'"
+    - "ssh deploy_target 'docker rm -f lookout' || true"
+    - 'cat $LOOKOUT_CONFIG | ssh deploy_target "docker run --env-file /dev/stdin -v $LOOKOUT_DIR:/mail -d --name lookout lookout:$CI_COMMIT_SHORT_SHA" || true'
+  tags:
+    - personal
+    - docker
