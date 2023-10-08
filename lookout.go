@@ -148,7 +148,7 @@ func handleCreate(e fsnotify.Event, logger *slog.Logger) {
 		if tag := GetStamp("tag", stamps, dummyLogger); tag != "" {
 			embed.Fields = append(embed.Fields, &EmbedField{
 				Name:   "Tag",
-				Value:  fmt.Sprintf("[%s](https://phabricator.wikimedia.org/p/%s)", tag, tag[1:]), // remove initial # from the tag for url
+				Value:  fmt.Sprintf("[%s](https://phabricator.wikimedia.org/tag/%s)", tag, tag[1:]), // remove initial # from the tag for url
 				Inline: true,
 			})
 		} else {
