@@ -2,7 +2,6 @@ package main
 
 import (
 	"embed"
-	"log/slog"
 	"testing"
 )
 
@@ -10,13 +9,12 @@ import (
 var f embed.FS
 
 func TestParseMail_simple(t *testing.T) {
-	logger := slog.With()
 	simpleEmail, err := f.Open("sample_emails/simple.eml")
 	expectedBody, err := f.ReadFile("sample_emails/simple.eml.txt")
 	if err != nil {
 		t.Fatal("reading simple.eml failed", err)
 	}
-	parsedMail, err := ParseMail(simpleEmail, logger)
+	parsedMail, err := ParseMail(simpleEmail, dummyLogger)
 	if err != nil {
 		t.Error("unexpected error", err)
 	}
@@ -28,13 +26,12 @@ func TestParseMail_simple(t *testing.T) {
 	}
 }
 func TestParseMail_comment(t *testing.T) {
-	logger := slog.With()
 	simpleEmail, err := f.Open("sample_emails/comment.eml")
 	expectedBody, err := f.ReadFile("sample_emails/comment.eml.txt")
 	if err != nil {
 		t.Fatal("reading comment.eml failed", err)
 	}
-	parsedMail, err := ParseMail(simpleEmail, logger)
+	parsedMail, err := ParseMail(simpleEmail, dummyLogger)
 	if err != nil {
 		t.Error("unexpected error", err)
 	}
