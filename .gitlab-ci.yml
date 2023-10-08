@@ -41,7 +41,7 @@ deploy:prod:
     - "docker save lookout:$CI_COMMIT_SHORT_SHA | bzip2 > lookout.docker.bzip2"
     - "cat lookout.docker.bzip2 | ssh deploy_target 'bunzip2 | docker load'"
     - "ssh deploy_target 'docker rm -f lookout' || true"
-    - 'cat $LOOKOUT_CONFIG | ssh deploy_target "docker run --env-file /dev/stdin -v $LOOKOUT_DIR:/mail -d --name lookout lookout:$CI_COMMIT_SHORT_SHA" || true'
+    - 'cat $LOOKOUT_CONFIG | ssh deploy_target "docker run --env-file /dev/stdin -v $LOOKOUT_DIR:/mail -d --restart=always --name lookout lookout:$CI_COMMIT_SHORT_SHA" || true'
   tags:
     - personal
     - docker
