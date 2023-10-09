@@ -12,3 +12,14 @@ All config is in environment variables. Make sure to bind mount the directory wh
 ## planned features
 - [ ] reply to message based on `Thread-Topic` header
   - [ ] persistent storage (sqlite?) linking `Thread-Topic`s to latest Discord message id
+
+## things i learned in this project
+- go packages
+  - file watching with [fsnotify/fsnotify](https://github.com/fsnotify/fsnotify)
+  - logging with [log/slog](https://pkg.go.dev/log/slog)
+  - go unit testing with [testing](https://pkg.go.dev/testing)
+  - mail parsing with [net/mail](https://pkg.go.dev/net/mail)
+- gitlab ci/cd
+  - setting up a personal runner
+  - docker in docker
+  - building docker in gitlab ci
