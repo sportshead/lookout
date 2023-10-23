@@ -1,4 +1,8 @@
 # lookout
+[![Go Report Card](https://goreportcard.com/badge/gitlab.wikimedia.org/sportz/lookout)](https://goreportcard.com/report/gitlab.wikimedia.org/sportz/lookout)
+[![License](https://img.shields.io/gitlab/license/sportz%2Flookout?gitlab_url=https%3A%2F%2Fgitlab.wikimedia.org)](LICENSE)
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline-status/sportz%2Flookout?gitlab_url=https%3A%2F%2Fgitlab.wikimedia.org&branch=master&logo=gitlab)](https://gitlab.wikimedia.org/sportz/lookout/-/pipelines)
+
 Watches for Phabricator emails regarding certain tags and forwards them to a Discord webhook.
 
 ## usage
